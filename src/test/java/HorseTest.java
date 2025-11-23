@@ -14,34 +14,26 @@ class HorseTest {
 
     @Test
     void constructorShouldThrowIllegalArgumentExceptionWhenNameIsNull() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Horse(null, 10, 5);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Horse(null, 10, 5));
         assertEquals("Name cannot be null.", exception.getMessage());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "\t", "\n"})
     void constructorShouldThrowIllegalArgumentExceptionWhenNameIsBlank(String blankName) {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Horse(blankName, 10, 5);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Horse(blankName, 10, 5));
         assertEquals("Name cannot be blank.", exception.getMessage());
     }
 
     @Test
     void constructorShouldThrowIllegalArgumentExceptionWhenSpeedIsNegative() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Horse("ValidName", -1, 5);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Horse("ValidName", -1, 5));
         assertEquals("Speed cannot be negative.", exception.getMessage());
     }
 
     @Test
     void constructorShouldThrowIllegalArgumentExceptionWhenDistanceIsNegative() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Horse("ValidName", 10, -5);
-        });
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Horse("ValidName", 10, -5));
         assertEquals("Distance cannot be negative.", exception.getMessage());
     }
 
