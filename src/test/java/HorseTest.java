@@ -51,9 +51,10 @@ class HorseTest {
         String paramName = "name";
         double paramSpeed = 2d;
         double paramDistance = 3d;
-
         Horse horse = new Horse(paramName, paramSpeed, paramDistance);
+
         String expected = horse.getName();
+
         assertInstanceOf(String.class, expected);
         assertEquals(paramName, expected);
     }
@@ -63,8 +64,8 @@ class HorseTest {
         String paramName = "name";
         double paramSpeed = 2d;
         double paramDistance = 3d;
-
         Horse horse = new Horse(paramName, paramSpeed, paramDistance);
+
         double expected = horse.getSpeed();
 
         assertEquals(paramSpeed, expected, 0.0001);
@@ -75,9 +76,10 @@ class HorseTest {
         String paramName = "name";
         double paramSpeed = 2d;
         double paramDistance = 3d;
-
         Horse horse = new Horse(paramName, paramSpeed, paramDistance);
+
         double expected = horse.getDistance();
+
         assertEquals(paramDistance, expected, 0.0001);
     }
 
@@ -85,8 +87,8 @@ class HorseTest {
     void getZeroDistanceTwoParamsTest() {
         String paramName = "name";
         double paramSpeed = 2d;
-
         Horse horseTwoParams = new Horse(paramName, paramSpeed);
+
         double distanceZero = horseTwoParams.getDistance();
 
         assertEquals(0.0, distanceZero, 0.0001);
@@ -98,10 +100,9 @@ class HorseTest {
         double param2 = 0.2d;
         double param3 = 0.3d;
 
-
         try (MockedStatic<Horse> mockedStatic = mockStatic(Horse.class)) {
-
             Horse obj = new Horse(param1, param2, param3);
+
             obj.move();
 
             mockedStatic.verify(() -> Horse.getRandomDouble(0.2, 0.9));
@@ -120,11 +121,11 @@ class HorseTest {
         double speed = 2d;
         double distance = 3d;
 
-
         try (MockedStatic<Horse> horseMockedStatic = mockStatic(Horse.class)) {
             horseMockedStatic.when(() -> Horse.getRandomDouble(0.2, 0.9)).thenReturn(random);
             Horse obj = new Horse(name, speed, distance);
             double result = distance + speed * random;
+
             obj.move();
 
             assertEquals(expected, result);
