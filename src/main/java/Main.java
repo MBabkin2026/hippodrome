@@ -1,7 +1,13 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
+
 
 public class Main {
+
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) throws Exception {
         List<Horse> horses = List.of(
@@ -14,6 +20,7 @@ public class Main {
                 new Horse("Cherry", 3)
         );
         Hippodrome hippodrome = new Hippodrome(horses);
+        logInfo("Начало скачек. Количество участников: " + hippodrome.getHorses().size());
 
         for (int i = 0; i < 100; i++) {
             hippodrome.move();
@@ -23,6 +30,8 @@ public class Main {
 
         String winnerName = hippodrome.getWinner().getName();
         System.out.println(winnerName + " wins!");
+
+        logInfo("Окончание скачек. Победитель: " + winnerName);
     }
 
     private static void watch(Hippodrome hippodrome) throws Exception {
@@ -31,4 +40,10 @@ public class Main {
                 .forEach(System.out::println);
         System.out.println("\n".repeat(10));
     }
+
+    private static void logInfo(String message) {
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss,SSS"));
+        logger.info(timestamp + " INFO Main: " + message);
+    }
+
 }
