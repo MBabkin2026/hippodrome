@@ -4,10 +4,18 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d [%p] %c - %m%n"/>
         </Console>
+        <RollingFile name="RollingFile" fileName="logs/hippodrome.log" filePattern="logs/hippodrome.%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d [%p] %c - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
     </Appenders>
     <Loggers>
         <Root level="info">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
         </Root>
     </Loggers>
 </Configuration>
