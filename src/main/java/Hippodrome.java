@@ -43,12 +43,12 @@ public class Hippodrome {
 
     private void logError(String message) {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss,SSS"));
-        logger.info(timestamp + " ERROR Hippodrome: " + message);
+        logger.info("{} ERROR Hippodrome: {}", timestamp, message);
     }
 
     private void logDebug(String message) {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss,SSS"));
-        logger.info(timestamp + " DEBUG Hippodrome: " + message);
+        logger.info("{} DEBUG Hippodrome: {}", timestamp, message);
     }
 
 }
