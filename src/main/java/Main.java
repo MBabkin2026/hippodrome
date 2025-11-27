@@ -1,13 +1,16 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+
 
 
 public class Main {
 
-    private static final Logger logger = Logger.getLogger(Main.class.getName());
+    private static final Logger log = LogManager.getLogger(Main.class);
 
 
     public static void main(String[] args) throws Exception {
@@ -22,6 +25,7 @@ public class Main {
         );
         Hippodrome hippodrome = new Hippodrome(horses);
         logInfo("Начало скачек. Количество участников: " + hippodrome.getHorses().size());
+
 
         for (int i = 0; i < 100; i++) {
             hippodrome.move();
@@ -44,7 +48,8 @@ public class Main {
 
     private static void logInfo(String message) {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss,SSS"));
-        logger.info(timestamp + " INFO Main: " + message);
+        log.info("{} INFO Main: {}", timestamp, message);
     }
+
 
 }
